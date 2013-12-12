@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "struts-2.1.dtd" >
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.multipart.maxSize" value="20000000"/>
+	<package name="default" extends="json-default">
+		<!--<action name="search" class="com.ms.action.SearchAction">
+			<result name="result">/jsp/result/result.jsp</result>
+			<result name="picresult">/jsp/result/picresult.jsp</result>
+			<result name="index">/index.jsp</result>
+		</action>
+		<action name="autocomplete" class="com.ms.action.AutocompleteAction">
+			<result name="listKeywordsJSON" type="json">
+				<param name="includeProperties">rows,rows\[\d+\]\.\w+</param>
+			</result>
+		</action>-->
+		<action name="login" class="nju.dm.action.LoginAction">
+			<result name="result">/index.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,74 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    font: 15px 'ËÎÌו', 'Trebuchet MS', Arial, Helvetica;    
+    margin: 0;
+    background-color: #d9dee2;   
+}
+
+#searchIcon{
+	background: url("../images/search.png") no-repeat center;
+	height:256px;
+	width:256px;
+	left:50px;
+	margin-left:122px;
+	margin-bottom:10px;
+}
+
+#searchDiv{
+	background-color: #fff;
+	height: 350px;
+    width: 500px;
+    margin: -250px 0 0 -230px;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+}
+#searchForm{
+	float:left;
+}
+
+#searchTextfield{
+	background: #f1f1f1;
+	font-size: 17px;
+    padding: 15px 15px 15px 30px;
+    margin: 0 0 10px 0;
+    width: 383px; /* 353 + 2 + 45 = 400 */
+	height: 50px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    float:left;
+}
+
+#searchTextfield input:focus
+{
+    background-color: #fff;
+    border-color: #e8c291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #e8c291 inset;
+    box-shadow: 0 0 0 1px #e8c291 inset;
+}
+
+#searchTextfield select:focus
+{
+    background-color: #fff;
+    border-color: #e8c291;
+}
+
+#searchButton{
+	font-size: 17px;
+	float:right;
+	height: 50px;
+	width: 100px;
+	margin-left: 15px;
+}
