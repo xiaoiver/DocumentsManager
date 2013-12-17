@@ -13,7 +13,7 @@
         <many-to-one name="user" class="nju.dm.domain.User" fetch="select">
             <column name="user_id" not-null="true" unique="true" />
         </many-to-one>
-        <many-to-one name="documentType" class="nju.dm.domain.DocumentType" fetch="select">
+        <many-to-one name="documentType" class="nju.dm.domain.DocumentType" fetch="select" lazy="false">
             <column name="type_id" not-null="true" unique="true" />
         </many-to-one>
         <property name="addTime" type="java.util.Date">

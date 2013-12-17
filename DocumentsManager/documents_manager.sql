@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 12 月 12 日 20:50
+-- 生成日期: 2013 年 12 月 17 日 12:54
 -- 服务器版本: 5.5.8
 -- PHP 版本: 5.3.5
 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `document` (
   `document_id` int(11) NOT NULL AUTO_INCREMENT,
   `type_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `add_time` date NOT NULL,
+  `add_time` datetime NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `year` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
@@ -142,12 +142,18 @@ CREATE TABLE IF NOT EXISTS `document` (
   PRIMARY KEY (`document_id`),
   KEY `type_id` (`type_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- 转存表中的数据 `document`
 --
 
+INSERT INTO `document` (`document_id`, `type_id`, `user_id`, `add_time`, `title`, `author`, `year`, `pages`, `abstract`, `keywords`, `publisher`, `url`, `publication`, `city`, `volume`, `issue`, `editor`, `book_name`, `school_name`, `doi`, `isbn`, `avr_rank`) VALUES
+(1, 1, 2, '2013-12-16 00:00:00', 'Book1', 'xxx', '2011', 100, '.........................', 'keyword1', 'abc', 'http://example.com', NULL, NULL, NULL, NULL, 'xx', NULL, NULL, NULL, '1111', NULL),
+(2, 1, 2, '2013-12-17 00:00:00', 'Book2', 'xx', '1991', 11, '111111111', 'k2', '11', '111', NULL, NULL, NULL, NULL, '11', NULL, NULL, NULL, '111111', NULL),
+(3, 4, 2, '2013-12-17 00:00:00', 'Conference1', '1', '1991', 11, '1111111', '11', '11', '11', '11', '11', NULL, NULL, NULL, NULL, NULL, '11111', NULL, NULL),
+(4, 6, 2, '2013-12-17 12:39:37', 'report1', '1', '2000', 1, '11', '11', '111', '1111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 7, 2, '2013-12-17 12:51:49', '1', '1', '1', 1, '1', '1', '1', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -205,12 +211,20 @@ CREATE TABLE IF NOT EXISTS `document_type` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`document_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
 -- 转存表中的数据 `document_type`
 --
 
+INSERT INTO `document_type` (`document_type_id`, `name`, `description`) VALUES
+(1, '图书', 'editor:编辑,isbn:ISBN'),
+(2, '图书章节', 'editor:编辑,book_name:图书名'),
+(3, '期刊', 'publication:出处,volume:卷,issue:期,doi:DOI'),
+(4, '会议', 'publication:出处,city:城市,doi:DOI'),
+(5, '学位论文', 'school_name:学校名'),
+(6, '技术报告', NULL),
+(7, '在线资源', NULL);
 
 -- --------------------------------------------------------
 
@@ -266,12 +280,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `reg_date` date NOT NULL,
   PRIMARY KEY (`user_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- 转存表中的数据 `user`
 --
 
+INSERT INTO `user` (`user_id`, `username`, `password`, `type_id`, `name`, `email`, `phone`, `reg_date`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'pan', 'pyqiverson@sina.com', '1', '2013-12-14'),
+(2, 'xiaop', '5c95434b5f2559fa417ba86c3d9528bc', 2, NULL, NULL, NULL, '2013-12-15'),
+(3, 'ruanhao', 'c4ca4238a0b923820dcc509a6f75849b', 4, NULL, NULL, NULL, '2013-12-15'),
+(4, 'feil', 'c4ca4238a0b923820dcc509a6f75849b', 2, NULL, NULL, NULL, '2013-12-15'),
+(5, 'feil1', 'c4ca4238a0b923820dcc509a6f75849b', 3, NULL, NULL, NULL, '2013-12-15');
 
 -- --------------------------------------------------------
 
@@ -283,12 +303,17 @@ CREATE TABLE IF NOT EXISTS `user_type` (
   `user_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`user_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `user_type`
 --
 
+INSERT INTO `user_type` (`user_type_id`, `name`) VALUES
+(1, '管理员'),
+(2, '研究生'),
+(3, '博士生'),
+(4, '导师');
 
 --
 -- 限制导出的表

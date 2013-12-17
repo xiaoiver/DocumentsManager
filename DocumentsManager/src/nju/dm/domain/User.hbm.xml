@@ -10,7 +10,7 @@
             <column name="user_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="userType" class="nju.dm.domain.UserType" fetch="select">
+        <many-to-one name="userType" class="nju.dm.domain.UserType" fetch="select" lazy="false">
             <column name="type_id" not-null="true" unique="true" />
         </many-to-one>
         <property name="username" type="java.lang.String">

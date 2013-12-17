@@ -1,8 +1,5 @@
 package nju.dm.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * UserType entity. @author MyEclipse Persistence Tools
  */
@@ -14,7 +11,6 @@ public class UserType implements java.io.Serializable {
 
 	private Integer userTypeId;
 	private String name;
-	private Set<User> users = new HashSet<User>(0);
 
 	// Constructors
 
@@ -22,15 +18,9 @@ public class UserType implements java.io.Serializable {
 	public UserType() {
 	}
 
-	/** minimal constructor */
+	/** full constructor */
 	public UserType(String name) {
 		this.name = name;
-	}
-
-	/** full constructor */
-	public UserType(String name, Set<User> users) {
-		this.name = name;
-		this.users = users;
 	}
 
 	// Property accessors
@@ -50,13 +40,4 @@ public class UserType implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Set<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
-
 }

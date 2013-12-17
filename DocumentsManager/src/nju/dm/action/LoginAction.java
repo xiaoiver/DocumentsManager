@@ -30,13 +30,16 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		User user = loginService.queryUser(username, password);
-		
-		if(user==null){
-			request.setAttribute("loginError", "error");
-			return "result";
+		User user = null;
+		if(!userService.isUserExist(username)){
+			request.setAttribute("loginError", "wrong-username");
+		}else{
+			user = loginService.queryUser(username, password);			
+			if(user==null){
+				request.setAttribute("loginError", "wrong-password");
+				request.setAttribute("rightUsername", username);
+			}
 		}
-		
 		session.put("user", user);
 		return "result";
 	}

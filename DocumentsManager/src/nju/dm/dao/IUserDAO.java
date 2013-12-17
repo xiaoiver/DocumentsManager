@@ -3,26 +3,18 @@ package nju.dm.dao;
 import java.util.List;
 
 import nju.dm.domain.User;
-
-import org.springframework.dao.DataAccessException;
+import nju.dm.domain.UserType;
 
 public interface IUserDAO {
 
-	/*public List<User> getAllUsers(Integer page, Integer rows);
-	public List<User> getAllUsers(Integer page, Integer rows, User user);
+	public boolean isUserExist(String username);
 
-	public Integer getAllUsersCount();
-	public Integer getAllUsersCount(User user);
-
-	public void updateUser(User user, String selrolesid)throws DataAccessException;
-
-	public void removeUser(String userid);
+	public List<UserType> getAllUserTypes();
 
 	public void addUser(User user);
 
-	public Object[] getUserSelrolesAndUnselroles(Long userid2);
+	public UserType getUserTypeById(Integer id);
 
-	public List getRoleSelmenusAndUnselmenus(String roleid);*/
-	public boolean isUserExist(String username);
+	public User updateUser(User user);
 
 }

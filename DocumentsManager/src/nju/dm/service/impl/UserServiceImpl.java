@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 
 import nju.dm.dao.IUserDAO;
 import nju.dm.domain.User;
+import nju.dm.domain.UserType;
 import nju.dm.service.IUserService;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -28,42 +29,29 @@ public class UserServiceImpl implements IUserService {
 
 	@Resource(name="userDAO")
 	private IUserDAO userDAO;
-	
-/*
-	public List<User> getAllUsers(Integer page, Integer rows) {
-		return userDAO.getAllUsers(page,rows);
-	}
-	public List<User> getAllUsers(Integer page, Integer rows, User user) {
-		return userDAO.getAllUsers(page,rows,user);
-	}	
-	
-	public Integer getAllUsersCount() {
-		return userDAO.getAllUsersCount();
-	}
-	public Integer getAllUsersCount(User user) {
-		return userDAO.getAllUsersCount(user);
-	}
-	
-	public void updateUser(User user,String selrolesid) throws DataAccessException {
-		userDAO.updateUser(user,selrolesid);
+		
+	@Override
+	public boolean isUserExist(String username) {
+		return userDAO.isUserExist(username);
 	}
 
-
-
-	
-	public void removeUser(String userid) {
-		try {
-			userDAO.removeUser(userid);
-		} catch (DataAccessException e) {		
-			throw e;
-		}
+	@Override
+	public List<UserType> getAllUserTypes() {
+		return userDAO.getAllUserTypes();
 	}
+
+	@Override
 	public void addUser(User user) {
 		userDAO.addUser(user);
 	}
-*/	
+
 	@Override
-	public boolean isUserExist(String username) {
-		 return userDAO.isUserExist(username);
+	public UserType getUserTypeById(Integer id) {
+		return userDAO.getUserTypeById(id);
+	}
+
+	@Override
+	public User updateUser(User user) {
+		return userDAO.updateUser(user);
 	}
 }

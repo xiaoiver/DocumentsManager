@@ -10,7 +10,7 @@ import java.util.Set;
  */
 
 @SuppressWarnings("serial")
-public abstract class User  implements java.io.Serializable {
+public class User  implements java.io.Serializable {
 
     // Fields    
 

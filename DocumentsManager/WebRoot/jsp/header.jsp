@@ -9,97 +9,89 @@ String keyword = request.getParameter("keyword");
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
+	<meta charset="UTF-8" />
     <base href="<%=basePath%>">
-    
     <title>
     	Welcome
     </title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/login.css">
-	<link rel="stylesheet" type="text/css" href="css/themes/base/jquery-ui.css">
-	<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui.js"></script>
-	<script type="text/javascript" src="js/login.js"></script>
-	<style>
-		.ui-menu { position: absolute; width: 100px; }
-	</style>
-</head>
-  
-  <body>
-  
-  	<div id="userDiv">
-  		<% 
-  			if(user == null){ 
-  		%>
-  		<div>
-		  <div>
-		    <button id="rerun">新用户，您可以</button>
-		    <button id="select">Select an action</button>
-		  </div>
-		  <ul>
-		    <li><a href="javascript:void(0)" id="loginLink">登录</a></li>
-		    <li><a href="javascript:void(0)" id="registerLink">注册</a></li>
-		  </ul>
-		</div>
-  		<% 	}else{
-  		%>
-  		<div>
-		  <div>
-		    <button id="rerun">欢迎你，<%=user.getUsername() %></button>
-		    <button id="select">Select an action</button>
-		  </div>
-		  <ul>
-		    <li><a href="javascript:void(0)" id="updateLink">修改资料</a></li>
-		    <li><a href="default/logout.action" id="logoutLink">注销</a></li>
-		  </ul>
-		</div>
-  		<%	
-  			}
-  		%>
-  	</div>
-  	
-  	<div id="loginDialog" title="登录">
-    <input id="loginError" type="hidden" value="${loginError}" />
-    <form id="login" action="default/login.action" method="post">
-		
-		<fieldset id="inputs">
-		<div id="errorBlock">用户名或密码错误</div>
-		<div class="inputDiv"><input id="username" type="text" name="username" /></div>
-		
-		<div class="inputDiv"><input id="password" type="password" name="password" /></div>
-		
-		<div class="inputDiv"><input type="text" id="txt" value="请输入密码"/></div>
-		</fieldset>
-		
-		
-		<fieldset id="actions">
-		<input id="loginSubmitBtn" class="submit" type="submit" value="登录" />
-		</fieldset>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>  
+<body>
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">文献管理系统</a>
+  </div>
 
-	</form>
-	</div>
-	
-	<div id="regDialog" title="注册">
-    <form id="register" action="default/register.action" method="post">
-		
-		<fieldset id="inputs">
-		
-		<div class="inputDiv"><input id="username" type="text" name="username" /></div>
-		
-		<div class="inputDiv"><input id="password" type="password" name="password" /></div>		
-		</fieldset>		
-		
-		<fieldset id="actions">
-		<input id="registerSubmitBtn" class="submit" type="submit" value="注册" />
-		</fieldset>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">文献类型 <b class="caret"></b></a>
+        <ul id="searchDocumentTypeList" class="dropdown-menu">
+        </ul>
+      </li>
+    </ul>
+    <form id="searchBar" class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input id="searchInput" type="text" class="form-control" width="300" placeholder="所有文献">
+      </div>
+      <button type="submit" class="btn btn-default">搜索</button>
+    </form>
+        
+    <ul class="nav navbar-nav navbar-right">
+    <%
+		if(user == null){
+	%>
+	<li id="loginDialog">
+		<input id="loginError" type="hidden" value="${loginError}" /><!-- 保存错误信息  -->
+    	<input id="hiddenUsername" type="hidden" value="${rightUsername}" /><!-- 保存正确的用户名 -->
+		<form id="login" class="navbar-form" role="form" action="user/login.action" method="post">
+	      <div class="form-group">
+	        <input id="username" name="username" type="text" class="form-control">
+	      </div>
+	      <div class="form-group">
+	        <input id="password" name="password" type="password" class="form-control">
+	        <input type="text" id="txt" value="请输入密码" class="form-control"/>
+	      </div>
+	      <button id="loginButton" type="submit" class="btn btn-success">登录</button>
+	    </form>
+    </li>
+	<li><a href="user/register.action">注册</a></li>
+     <%
+     	}else{
+  	%>
+  	<li><h4>Hi,<%= user.getUsername() %></h4></li>
+	<li><a href="user/personalHomepage.action" id="personalHomepageLink" data-toggle="tooltip" title="查看修改个人资料，录入文献">个人中心</a></li>
+    	<% 
+			if(user.getUserType().getName().equals("管理员")){
+		%>
+    	<li><a href="user/manage-userlist.jsp" id="manageUserListLink">用户列表</a></li>
+    	<%
+			}
+		%>
+    <li><a href="user/logout.action" id="logoutLink">注销</a></li>
+    <%
+		}
+	%>
+    </ul>
+  </div>
+</nav>
 
-	</form>
+<div id="messageDiv">
+	<div id="messageBlock">
 	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div id="mainContent" class="col-md-9 col-md-push-3">

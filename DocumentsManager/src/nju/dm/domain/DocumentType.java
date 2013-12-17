@@ -15,7 +15,6 @@ public class DocumentType implements java.io.Serializable {
 	private Integer documentTypeId;
 	private String name;
 	private String description;
-	private Set<Document> documents = new HashSet<Document>(0);
 
 	// Constructors
 
@@ -29,10 +28,9 @@ public class DocumentType implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public DocumentType(String name, String description, Set<Document> documents) {
+	public DocumentType(String name, String description) {
 		this.name = name;
 		this.description = description;
-		this.documents = documents;
 	}
 
 	// Property accessors
@@ -60,13 +58,4 @@ public class DocumentType implements java.io.Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public Set<Document> getDocuments() {
-		return this.documents;
-	}
-
-	public void setDocuments(Set<Document> documents) {
-		this.documents = documents;
-	}
-
 }

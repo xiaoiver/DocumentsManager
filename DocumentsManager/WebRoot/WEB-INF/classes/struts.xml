@@ -3,19 +3,52 @@
 <struts>
 	<constant name="struts.i18n.encoding" value="utf-8"></constant>
 	<constant name="struts.multipart.maxSize" value="20000000"/>
-	<package name="default" extends="json-default">
-		<!--<action name="search" class="com.ms.action.SearchAction">
-			<result name="result">/jsp/result/result.jsp</result>
-			<result name="picresult">/jsp/result/picresult.jsp</result>
-			<result name="index">/index.jsp</result>
-		</action>
-		<action name="autocomplete" class="com.ms.action.AutocompleteAction">
-			<result name="listKeywordsJSON" type="json">
-				<param name="includeProperties">rows,rows\[\d+\]\.\w+</param>
-			</result>
-		</action>-->
+	<package name="user" extends="json-default" namespace="/user">
 		<action name="login" class="nju.dm.action.LoginAction">
 			<result name="result">/index.jsp</result>
+		</action>
+		<action name="logout" class="nju.dm.action.LogoutAction">
+			<result name="result">/index.jsp</result>
+		</action>
+		<action name="register" class="nju.dm.action.RegisterAction">
+			<result name="showRegisterForm" type="redirect">/jsp/user/register.jsp</result>
+			<result name="success">/jsp/user/register-success.jsp</result>
+		</action>
+		<action name="listUserTypes" class="nju.dm.action.ListUserTypesAction">
+			<result name="result" type="json">
+				<param name="includeProperties">userTypes,userTypes\[\d+\]\.\w+</param>
+			</result>
+		</action>
+		<action name="updateProfile" class="nju.dm.action.UpdateProfileAction">
+			<result name="showProfile" type="redirect">/jsp/user/update-profile.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="personalHomepage" class="nju.dm.action.PersonalHomepageAction">
+			<result name="result">/jsp/user/personal-homepage.jsp</result>
+		</action>
+	</package>
+	
+	<package name="document" extends="json-default" namespace="/document">
+		<action name="createDocument" class="nju.dm.action.CreateDocumentAction">
+			<result name="showDocumentForm" type="redirect">/jsp/document/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">personalHomepage</param>
+				<param name="pageNum">1</param>
+            	<param name="namespace">/user</param>
+			</result>
+		</action>
+		<action name="editDocument" class="nju.dm.action.EditDocumentAction">
+			<result name="showDocumentForm">/jsp/document/edit.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">personalHomepage</param>
+				<param name="pageNum">1</param>
+            	<param name="namespace">/user</param>
+			</result>
+		</action>
+		<action name="listDocumentTypes" class="nju.dm.action.ListDocumentTypesAction">
+			<result name="result" type="json">
+				<param name="includeProperties">documentTypes,documentTypes\[\d+\]\.\w+</param>
+			</result>
 		</action>
 	</package>
 </struts>

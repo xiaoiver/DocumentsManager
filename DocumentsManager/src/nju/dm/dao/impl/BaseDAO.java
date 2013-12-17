@@ -6,14 +6,14 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
- * 所有DAO的实现类均继承此类
+ * 鎵�鏈塂AO缁ф壙璇ョ被
  *
  */
 public class BaseDAO extends HibernateDaoSupport{
 	@SuppressWarnings("unused")
 	@Resource(name="sessionFactory")
 	/**
-	 * 使用注解注入sessionFactory。HibernateDaoSupport中sessionFactory声明为final，无法重写。
+	 * 浣跨敤娉ㄨВ娉ㄥ叆sessionFactory锛孒ibernateDaoSupport涓殑sessionFactory澹版槑涓篺inal
 	 * @param sessionFactory
 	 */
 	private void setSuperSessionFactory(SessionFactory sessionFactory){

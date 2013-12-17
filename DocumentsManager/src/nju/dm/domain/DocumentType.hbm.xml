@@ -10,17 +10,11 @@
             <column name="document_type_id" />
             <generator class="identity" />
         </id>
-        <property name="name" type="java.lang.String">
+        <property name="name" lazy="false" type="java.lang.String">
             <column name="name" not-null="true" />
         </property>
         <property name="description" type="java.lang.String">
             <column name="description" length="65535" />
         </property>
-        <set name="documents" inverse="true">
-            <key>
-                <column name="type_id" not-null="true" unique="true" />
-            </key>
-            <one-to-many class="nju.dm.domain.Document" />
-        </set>
     </class>
 </hibernate-mapping>

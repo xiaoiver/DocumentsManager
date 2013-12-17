@@ -4,7 +4,7 @@ import nju.dm.domain.User;
 
 public interface ILoginDAO {
 	/**
-	 * 验证用户名和密码
+	 * 鏌ユ壘鐢ㄦ埛
 	 * @param username
 	 * @param password
 	 * @return
